@@ -1,0 +1,12 @@
+language: csharp
+dist: bionic
+sudo: required
+mono: none
+dotnet: 3.0
+solution: NPFTestApi.sln
+script:
+  - dotnet restore
+  - dotnet build
+  - dotnet test tests/NPFTestApi.Tests/NPFTestApi.Tests.csproj
+on:
+  tags: true
