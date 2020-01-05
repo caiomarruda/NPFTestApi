@@ -1,6 +1,7 @@
 ﻿using NPFTestApi.Core.Helpers;
 using NPFTestApi.Core.Interfaces;
 using NPFTestApi.Core.Models.Divisibility.Response;
+using System;
 using System.Collections.Generic;
 
 namespace NPFTestApi.Core.Services
@@ -27,6 +28,22 @@ namespace NPFTestApi.Core.Services
             return lstMultiple;
         }
 
+        public IEnumerable<MultipleResponse> IsNumberDivisibleByElevenRecursive(List<int> Numbers)
+        {
+            var lstMultiple = new List<MultipleResponse>();
+
+            Numbers.ForEach(x =>
+            {
+                lstMultiple.Add(new MultipleResponse
+                {
+                    Number = x.ToString(),
+                    IsMultiple = DivByElevenRecursive(x)
+                });
+
+            });
+            return lstMultiple;
+        }
+
         private bool DivByEleven(int number)
         {
             return
@@ -35,18 +52,25 @@ namespace NPFTestApi.Core.Services
 
         private bool DivByElevenRecursive(int number)
         {
-            int lastNumber = number % 10;
-
-            if (IntHelper.IntLength(number) <= 1)
-                return false;
-
-            if (IntHelper.IntLength(number) == 2)
+            try
             {
-                int firstNumber = number / 10;
-                return firstNumber == lastNumber;
+                if (IntHelper.IntLength(number) <= 1)
+                    return false;
+
+                int lastNumber = number % 10;
+
+                if (IntHelper.IntLength(number) == 2)
+                {
+                    int firstNumber = number / 10;
+                    return firstNumber == lastNumber;
+                }
+                else
+                    return DivByElevenRecursive((number / 10) - lastNumber);
             }
-            else
-                return DivByElevenRecursive((number / 10) - lastNumber);
+            catch(ArgumentOutOfRangeException)
+            {
+                return false;
+            }
         }
     }
 }

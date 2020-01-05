@@ -14,7 +14,6 @@ namespace NPFTestApi.Tests
             _divisibilityService = new DivisibilityService();
         }
 
-        #region Sample_TestCode
         [Theory]
         [InlineData(new object[] { new int[] { -10, 4, 0, 1, 9} })]
         public void IsDivisibleByEleven_ValuesLessThan2_ReturnFalse(int[] value)
@@ -22,11 +21,7 @@ namespace NPFTestApi.Tests
             var result = _divisibilityService.IsNumberDivisibleByEleven(new List<int>(value));
 
             Assert.Contains(true, result.Select(x => x.IsMultiple == false));
-            //Assert.Contains<MultipleResponse>(result.GetEnumerator(), false);
-
-            //Assert.Contains(result, $"{value} should not be prime");
         }
-        #endregion
 
         [Theory]
         [InlineData(new object[] { new int[] { 112233, 30800, 2937, 323455693 } })]
