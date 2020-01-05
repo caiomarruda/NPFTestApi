@@ -18,7 +18,7 @@ namespace NPFTestApi.Tests
         [InlineData(new object[] { new int[] { -10, 4, 0, 1, 9 } })]
         public void IsDivisibleByElevenRecursive_ValuesLessThan2_ReturnFalse(int[] value)
         {
-            var result = _divisibilityService.IsNumberDivisibleByElevenRecursive(new List<int>(value));
+            var result = _divisibilityService.IsNumberDivisibleByEleven(new List<int>(value), true);
 
             Assert.Contains(true, result.Select(x => x.IsMultiple == false));
         }
@@ -27,7 +27,7 @@ namespace NPFTestApi.Tests
         [InlineData(new object[] { new int[] { 112233, 30800, 2937, 323455693 } })]
         public void IsDivisibleByElevenRecursive_ValuesGreatherThan2_ReturnTrue(int[] value)
         {
-            var result = _divisibilityService.IsNumberDivisibleByElevenRecursive(new List<int>(value));
+            var result = _divisibilityService.IsNumberDivisibleByEleven(new List<int>(value), true);
 
             Assert.Contains(true, result.Select(x => x.IsMultiple == true));
         }
@@ -36,7 +36,7 @@ namespace NPFTestApi.Tests
         [InlineData(new object[] { new int[] { 112234, 33, 30800 } })]
         public void IsDivisibleByElevenRecursive_ValuesGreatherThan2_ReturnFalse(int[] value)
         {
-            var result = _divisibilityService.IsNumberDivisibleByElevenRecursive(new List<int>(value));
+            var result = _divisibilityService.IsNumberDivisibleByEleven(new List<int>(value), true);
 
             Assert.Contains(true, result.Select(x => x.IsMultiple == false));
         }

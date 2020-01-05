@@ -5,7 +5,6 @@ namespace NPFTestApi.Core.Interfaces
 {
     public interface IDivisibilityService
     {
-        IEnumerable<MultipleResponse> IsNumberDivisibleByEleven(List<int> number);
-        IEnumerable<MultipleResponse> IsNumberDivisibleByElevenRecursive(List<int> Numbers);
+        IEnumerable<MultipleResponse> IsNumberDivisibleByEleven(List<int> Numbers, bool recursiveValidation = false);
     }
 }

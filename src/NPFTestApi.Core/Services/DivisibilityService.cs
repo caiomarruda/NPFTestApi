@@ -12,7 +12,7 @@ namespace NPFTestApi.Core.Services
         {
         }
 
-        public IEnumerable<MultipleResponse> IsNumberDivisibleByEleven(List<int> Numbers)
+        public IEnumerable<MultipleResponse> IsNumberDivisibleByEleven(List<int> Numbers, bool recursiveValidation = false)
         {
             var lstMultiple = new List<MultipleResponse>();
 
@@ -21,23 +21,9 @@ namespace NPFTestApi.Core.Services
                 lstMultiple.Add(new MultipleResponse
                 {
                     Number = x.ToString(),
-                    IsMultiple = DivByEleven(x)
-                });
-
-            });
-            return lstMultiple;
-        }
-
-        public IEnumerable<MultipleResponse> IsNumberDivisibleByElevenRecursive(List<int> Numbers)
-        {
-            var lstMultiple = new List<MultipleResponse>();
-
-            Numbers.ForEach(x =>
-            {
-                lstMultiple.Add(new MultipleResponse
-                {
-                    Number = x.ToString(),
-                    IsMultiple = DivByElevenRecursive(x)
+                    IsMultiple = recursiveValidation 
+                        ? DivByElevenRecursive(x) 
+                        : DivByEleven(x)
                 });
 
             });
