@@ -21,7 +21,7 @@ dotnet run --project src\NPFTestApi\NPFTestApi.csproj
 dotnet publish -c Release
 ```
 
-###To build and run this project via docker:
+### To build and run this project via docker:
 ```bash
 docker build -t npftestapi:latest .
 docker run -p 80:80 npftestapi:latest
