@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
-COPY ["NPFTestApi/NPFTestApi.csproj", "NPFTestApi/"]
-RUN dotnet restore "NPFTestApi/NPFTestApi.csproj"
+COPY ["src/NPFTestApi/NPFTestApi.csproj", "src/NPFTestApi/"]
+RUN dotnet restore "src/NPFTestApi/NPFTestApi.csproj"
 COPY . .
-WORKDIR "/src/NPFTestApi"
+WORKDIR "/src/src/NPFTestApi"
 RUN dotnet build "NPFTestApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
